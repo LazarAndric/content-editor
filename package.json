@@ -5,8 +5,8 @@
   "type": "module",
   "description": "Framework-independent local content editor with localization, media, rich text and XLSX import/export",
   "bin": {
-    "content-editor": "./src/cli.mjs",
-    "content-kit": "./src/cli.mjs"
+    "content-editor": "src/cli.mjs",
+    "content-kit": "src/cli.mjs"
   },
   "scripts": {
     "test": "node --test tests/*.test.mjs",

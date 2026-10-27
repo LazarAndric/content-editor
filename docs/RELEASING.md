@@ -12,7 +12,8 @@ another project. Both content-editor and content-kit executables are included.
 4. Install the archive in a disposable consumer and check CLI initialization,
    browser modules, editor assets, content saves and XLSX use.
 5. Commit and push the release sources to GitHub.
-6. Run npm login and verify npm whoami returns unla4ky.
+6. Enable two-factor authentication in the npm account settings before the first
+   release. Run npm login and verify npm whoami returns unla4ky.
 7. Run npm publish --access public and complete npm's authentication challenge.
 8. Verify npm view @unla4ky/content-editor@<version> and install that exact
    registry version into a disposable consumer.
