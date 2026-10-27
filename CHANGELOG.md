@@ -17,8 +17,8 @@
   retaining existing HTML storage, sanitization, table and formatting support.
 - Licensed package sources under MIT and included browser dependency notices
   in static site exports.
-- Included a CI configuration template and compatibility checks; registry publication awaits the npm scope
-  selection.
+- Included a CI configuration template and compatibility checks.
+- Prepared the public npm release as @unla4ky/content-editor@0.4.0.
 
 ## 0.3.0 — 2026-10-23
 

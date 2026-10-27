@@ -1,7 +1,7 @@
 {
-  "name": "content-editor",
+  "name": "@unla4ky/content-editor",
   "version": "0.4.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "Framework-independent local content editor with localization, media, rich text and XLSX import/export",
   "bin": {

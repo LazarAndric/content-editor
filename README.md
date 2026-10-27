@@ -20,10 +20,10 @@ vanilla project, an existing site preserving its DOM/CSS, and localization only.
 
 ## Quick start: one Node.js process, no Python
 
-After publication, replace `YOUR_NPM_USERNAME` below with the package owner:
+Create a new project:
 
 ```powershell
-npx --package=@YOUR_NPM_USERNAME/content-editor@0.4.0 content-editor init --template vanilla --dir ./demo
+npx --package=@unla4ky/content-editor@0.4.0 content-editor init --template vanilla --dir ./demo
 cd demo
 npm install
 npm run dev
@@ -35,7 +35,7 @@ and live updates. It does not open a browser or silently choose another port.
 Stop it with Ctrl+C. No Python, Vite, import map or build is required.
 
 When the package is already installed in a project, the initializer is also
-available as `npx content-kit init --template vanilla --dir ./demo`.
+available as `npx --no-install content-editor init --template vanilla --dir ./demo`.
 The initializer creates configuration, a small populated hierarchy, project-owned
 HTML/CSS/JS and npm scripts. It refuses existing template files or conflicting
 scripts before writing. It does not automatically install, start or overwrite
@@ -62,7 +62,7 @@ export default {
 };
 ```
 
-Set the project's dev script to `content-kit dev`, or run `npx content-kit dev`.
+Set the project's dev script to `content-kit dev`, or run `npx --no-install content-editor dev`.
 Existing saved editor JSON and its content-media folder can be placed in the
 configured content directory; they are not replaced by the starter seed.
 Only files inside public/ are served as site assets. Hidden paths and symlinks
@@ -113,7 +113,7 @@ The same relative import path is supported by the local server and static
 export; do not import private package internals or hard-code 127.0.0.1 in the
 site. `templates/vanilla/public/app.mjs` is the complete working example,
 including title, breadcrumb, languages, initial error handling and teardown.
-With a bundler, equivalent public exports are `@YOUR_NPM_USERNAME/content-editor/client`,
+With a bundler, equivalent public exports are `@unla4ky/content-editor/client`,
 `/navigation`, `/vanilla` and `/browser`; the existing core and React APIs remain.
 
 `renderItem` returns one focusable row element; the adapter wraps it in nested
@@ -152,7 +152,7 @@ on mount; the example's pagehide cleanup is intended for a simple page.
 Once you are ready to publish, run this explicitly in the consuming project:
 
 ```sh
-npx content-kit export --out dist
+npx --no-install content-editor export --out dist
 ```
 
 The command copies public/ and writes content.json, content-media/ and
@@ -174,19 +174,19 @@ the exporter cannot rewrite arbitrary hard-coded endpoints in custom code.
 
 ## Add to another project
 
-After publication, install the scoped package in the consuming project:
+Install the public scoped package in the consuming project:
 
 ```sh
-npm install @YOUR_NPM_USERNAME/content-editor@0.4.0
+npm install @unla4ky/content-editor@0.4.0
 ```
 
-The unscoped npm name is already owned by another project. The final scope
-is chosen when the maintainer creates their npm account; all scoped names in
-this document are placeholders until then. No registry release has been made.
+The package is named `@unla4ky/content-editor`; the unscoped name belongs to
+another project. Both `content-editor` and the older `content-kit` executable
+are included.
 
 Install React in the host only if using the optional React entry point. Node
 22.13 or newer is required for the local editor and Excel tools. No build step
-or database is required. For local development before publication, use
+or database is required. For local package development, use
 `npm install --install-links /absolute/path/to/content-editor` instead.
 
 ## Define collections once
@@ -217,7 +217,7 @@ heading/text/image/video block model. There is no arbitrary field-schema editor.
 ## Use content without React or a network connection
 
 ```js
-import { createContent, createContentStore } from "@YOUR_NPM_USERNAME/content-editor";
+import { createContent, createContentStore } from "@unla4ky/content-editor";
 import { definition } from "./content-definition.js";
 
 const store = createContentStore({
@@ -249,8 +249,8 @@ subscriptions. Treat snapshots as read-only; change content through `setContent`
 
 ```js
 import path from "node:path";
-import { createContent } from "@YOUR_NPM_USERNAME/content-editor";
-import { startContentServer } from "@YOUR_NPM_USERNAME/content-editor/server";
+import { createContent } from "@unla4ky/content-editor";
+import { startContentServer } from "@unla4ky/content-editor/server";
 import { definition } from "./content-definition.js";
 
 const server = await startContentServer({
@@ -273,7 +273,7 @@ Invalid saves and stale revisions are rejected. A corrupt file can recover
 from a valid backup; if neither is valid, files are preserved and startup fails.
 
 For direct Node file access without the editor, use `openLocalContent` from
-`@YOUR_NPM_USERNAME/content-editor/local`, then `getSnapshot()`, `subscribe()` and
+`@unla4ky/content-editor/local`, then `getSnapshot()`, `subscribe()` and
 `save(nextContent, baseRevision)`. Concurrent saves are serialized. A stale
 save throws an error with `status: 409`.
 
@@ -294,9 +294,9 @@ requires importing the host from inside the package.
 ## Optional live React binding
 
 ```jsx
-import { createContentStore } from "@YOUR_NPM_USERNAME/content-editor";
-import { createLiveSource } from "@YOUR_NPM_USERNAME/content-editor/live";
-import { createContentBindings } from "@YOUR_NPM_USERNAME/content-editor/react";
+import { createContentStore } from "@unla4ky/content-editor";
+import { createLiveSource } from "@unla4ky/content-editor/live";
+import { createContentBindings } from "@unla4ky/content-editor/react";
 import { definition } from "./content-definition.js";
 
 const store = createContentStore({ definition });
@@ -326,13 +326,13 @@ content use `createContentBindings(store)` without `createLiveSource`.
 `onPreview` and `onError` callbacks are available on the live integration.
 
 Rich-text strings should be rendered with `contentHtml` from
-`@YOUR_NPM_USERNAME/content-editor/format`, which sanitizes HTML. That entry requires a DOM;
+`@unla4ky/content-editor/format`, which sanitizes HTML. That entry requires a DOM;
 `createContentFormatter(window)` accepts an explicit DOM. The raw core entry
 does not require a browser or DOM.
 
 ## Excel compatibility
 
-`@YOUR_NPM_USERNAME/content-editor/xlsx` exports `exportContentWorkbook(content)` and
+`@unla4ky/content-editor/xlsx` exports `exportContentWorkbook(content)` and
 `importContentWorkbook(bytes, currentContent, { resolveKey })`. Import returns
 a candidate model and report; it never saves or overwrites files on its own.
 
@@ -379,8 +379,7 @@ when an XLSX request arrives. Installation still includes those dependencies.
 ## Publication status and licensing
 
 The source is public at [LazarAndric/content-editor](https://github.com/LazarAndric/content-editor).
-The npm release is pending selection of the maintainer account/scope. The package
-remains private in package.json until that scope is selected.
+The public npm package is [`@unla4ky/content-editor`](https://www.npmjs.com/package/@unla4ky/content-editor).
 
 The package source is licensed under [MIT](LICENSE). The local rich-text editor
 uses SunEditor (MIT), with no API key, account or external CDN. Existing HTML

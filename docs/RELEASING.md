@@ -1,28 +1,25 @@
-# Release 0.4.0
+# Releasing @unla4ky/content-editor
 
-The source repository is public, but npm publication is blocked
-until the maintainer chooses an npm account/scope. The source is MIT-licensed. The
-unscoped name `content-editor` is owned by another project. Keep `private: true`
-until the npm scope is resolved.
+The source repository and npm package are public. Sources are MIT-licensed.
+The package name is @unla4ky/content-editor; the unscoped name belongs to
+another project. Both content-editor and content-kit executables are included.
 
-1. Create an npm account and enable the publishing authentication it requires.
-2. Set package.json `name` to `@YOUR_NPM_USERNAME/content-editor`, review
-   the MIT LICENSE file and THIRD-PARTY-NOTICES.md. SunEditor is MIT-licensed.
-3. Replace the scope placeholders in the documentation. The initializer takes
-   the actual package name from package.json automatically.
-4. Set `private` to false and run `npm install --package-lock-only`.
-5. Run `npm ci`, `npm test` and `npm pack --dry-run`. Inspect the archive contents:
-   only package sources, editor, templates, public docs and licenses belong there.
-6. Commit the release and push the public repository after the checks pass.
-7. Run `npm login`, then `npm publish --access public`. Complete npm's
-   authentication challenge in your browser when requested.
-8. Verify `npm view @YOUR_NPM_USERNAME/content-editor@0.4.0` and install it into
-   a disposable consumer. Check initialization, CLI, editor and spreadsheet use.
-9. Tag the verified release `v0.4.0` and push the tag.
+1. Set the intended new version in package.json. Never overwrite an existing
+   registry version. Keep name, license and public publishConfig unchanged.
+2. Run npm install --package-lock-only, then npm ci and npm test.
+3. Run npm pack --dry-run and inspect its file allowlist. The archive should
+   contain sources, editor, templates, public docs and licenses.
+4. Install the archive in a disposable consumer and check CLI initialization,
+   browser modules, editor assets, content saves and XLSX use.
+5. Commit and push the release sources to GitHub.
+6. Run npm login and verify npm whoami returns unla4ky.
+7. Run npm publish --access public and complete npm's authentication challenge.
+8. Verify npm view @unla4ky/content-editor@<version> and install that exact
+   registry version into a disposable consumer.
+9. Tag the verified release v<version> and push the tag.
 
-The `prepublishOnly` script runs the test suite. There are no install-time build
-scripts or automatic application/content updates. Do not commit .npmrc tokens;
-the repository ignores .npmrc and uses an explicit npm file allowlist.
+The prepublishOnly script runs the tests. Installation has no build scripts or
+automatic application/content updates. Do not commit .npmrc tokens.
 
 ## Optional GitHub Actions setup
 

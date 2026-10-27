@@ -28,5 +28,5 @@ ExcelJS source uses uuid v4 without a supplied buffer. No forced ExcelJS downgra
 or unsupported major dependency override was applied. Recheck the audit before
 the registry release.
 
-The source is MIT-licensed. npm publication is pending the maintainer's account,
-final scope and registry authentication. No npm version has been published.
+The source is MIT-licensed. The registry release name is
+`@unla4ky/content-editor@0.4.0`; see RELEASING.md for publication and verification.

@@ -5,9 +5,8 @@ change a consumer's package.json, lockfile, installed dependencies or saved data
 Local `file:` dependencies can install newer sources during a later reinstall;
 keep the old package directory or a tarball if you need reproducible old installs.
 
-The final registry name will be `@YOUR_NPM_USERNAME/content-editor`. The unscoped
-name belongs to another project. Replace the scope in these examples after the
-maintainer selects an npm account and publishes the release.
+The registry name is `@unla4ky/content-editor`. The unscoped name belongs
+to another project.
 
 To adopt the new name, replace your old dependency and its import prefixes with
 the new scoped name. All public subpaths remain available, including `/react`,
@@ -19,7 +18,7 @@ key. For example, when an application's old dependency key is `legacy-content`:
 ```json
 {
   "dependencies": {
-    "legacy-content": "npm:@YOUR_NPM_USERNAME/content-editor@0.4.0"
+    "legacy-content": "npm:@unla4ky/content-editor@0.4.0"
   }
 }
 ```

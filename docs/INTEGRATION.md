@@ -1,12 +1,12 @@
 # Integration recipes — 0.4.0
 
-Replace `YOUR_NPM_USERNAME` with the eventual npm owner. These registry
-commands apply after publication; before then, install the local directory.
+These examples use the public `@unla4ky/content-editor` package. For local
+package development, install the local source directory instead.
 
 ## 1. New vanilla project
 
 ```powershell
-npx --package=@YOUR_NPM_USERNAME/content-editor@0.4.0 content-editor init --dir ./my-demo
+npx --package=@unla4ky/content-editor@0.4.0 content-editor init --dir ./my-demo
 cd my-demo
 npm install
 npm run dev
@@ -22,7 +22,7 @@ bindings. Stop the process yourself with Ctrl+C. Python is not required.
 Install into the site's project directory:
 
 ```powershell
-npm install @YOUR_NPM_USERNAME/content-editor@0.4.0
+npm install @unla4ky/content-editor@0.4.0
 ```
 
 Keep the browser files in a dedicated site folder. It may be called dist if
@@ -111,7 +111,7 @@ window.addEventListener('pagehide', () => {
 }, {once: true});
 ```
 
-Run `npx content-kit dev`. In Shared texts, create home.title and fill its
+Run `npx --no-install content-editor dev`. In Shared texts, create home.title and fill its
 translations, or explicitly register its declaration. Changing text or language
 updates the existing h1. The site retains its CSS, menus and non-content code.
 
@@ -161,8 +161,8 @@ No categories or block renderer are necessary. Use this configuration:
 
 ```js
 // content-kit.config.mjs
-import {createContent} from '@YOUR_NPM_USERNAME/content-editor';
-import {applyTextFields} from '@YOUR_NPM_USERNAME/content-editor/fields';
+import {createContent} from '@unla4ky/content-editor';
+import {applyTextFields} from '@unla4ky/content-editor/fields';
 const definition = {textFields: [{
   key: 'home.title', label: 'Main heading', type: 'message', required: true,
   components: ['accent'],
@@ -206,7 +206,7 @@ window.addEventListener('pagehide', () => {
 }, {once: true});
 ```
 
-Run `npx content-kit dev`. Change the full heading in Shared texts and switch
+Run `npx --no-install content-editor dev`. Change the full heading in Shared texts and switch
 languages. The translator can move {accent} without changing markup. Named
 components are project-supplied factories; there is no arbitrary HTML parsing.
 {br} creates a project-approved line break when the br component returns a br.
@@ -224,8 +224,8 @@ Registration is separate and explicit. The editor shows a plan and Apply button.
 CLI equivalents (stop the dev process first for offline CLI writes):
 
 ```sh
-npx content-kit fields
-npx content-kit fields --apply
+npx --no-install content-editor fields
+npx --no-install content-editor fields --apply
 ```
 
 applyTextFields and planTextFields from /fields expose the same behavior to Node
@@ -263,7 +263,7 @@ policy, createContentStore/createContentClient accept missingText (string or
 callback) and onMissingText({code,key,language}). Logs and visitor fallback are
 separate choices. An HTML binding reports its own diagnostics independently.
 
-The editor Diagnostics tab and `npx content-kit doctor` report incomplete text,
+The editor Diagnostics tab and `npx --no-install content-editor doctor` report incomplete text,
 declared required fields, malformed named messages, image descriptions, media
 files and HTML keys. doctor is read-only; it also reports the package version
 and outstanding registration plan. CLI required errors set a nonzero exit code.
@@ -328,8 +328,8 @@ a restart notice; it does not reload project code or overwrite editor data.
 Copy installations require reinstallation after changing module sources; see
 the README for optional source-symlink development. No server starts on install.
 
-Use `npx content-kit export --out site-export-001`, or configure outDirectory
-and run `npx content-kit export`. The destination must be fresh and separate
+Use `npx --no-install content-editor export --out site-export-001`, or configure outDirectory
+and run `npx --no-install content-editor export`. The destination must be fresh and separate
 from sources. The command never deletes a previous export. Its conflict message
 explains which path to change. Upload the entire output folder, including
 content.json, content-kit/ and content-media/. The documented runtime import
