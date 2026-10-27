@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "revision": 0,
+  "defaultLanguage": "fr",
+  "languages": [
+    {
+      "code": "fr",
+      "label": "Français"
+    },
+    {
+      "code": "de",
+      "label": "Deutsch"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "parentId": null,
+      "order": 0,
+      "label": "root.label",
+      "title": "root.title",
+      "blocks": [
+        {
+          "id": "body",
+          "type": "text",
+          "key": "root.body"
+        },
+        {
+          "id": "photo",
+          "type": "image",
+          "media": "cover"
+        }
+      ]
+    }
+  ],
+  "texts": {
+    "root.label": {
+      "fr": "Bonjour",
+      "de": "Hallo"
+    },
+    "root.title": {
+      "default": "Title"
+    },
+    "root.body": {
+      "fr": "<!--plan-your-visit-rich-text--><p><strong>Ancien</strong> texte 中文</p>"
+    },
+    "common.action": {
+      "fr": "Continuer"
+    }
+  },
+  "media": {
+    "cover": {
+      "type": "image",
+      "files": {
+        "default": "/content-media/cover.png",
+        "de": "/content-media/de.png"
+      }
+    }
+  }
+}

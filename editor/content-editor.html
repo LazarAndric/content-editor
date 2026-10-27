@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Content editor</title><link rel="stylesheet" href="/vendor/suneditor/suneditor.min.css"><link rel="stylesheet" href="/vendor/suneditor/dark.css"><link rel="stylesheet" href="/content-editor.css"></head>
+<body>
+  <header><div><strong id="project-title">Content</strong><span>Content editor</span></div><div class="tools"><label id="group-picker" hidden>Collection <select id="content-group"></select></label><button id="xlsx-import-button">Import XLSX</button><button id="xlsx-export">Export XLSX</button><label>Preview language <select id="language"></select></label><button id="preview" hidden>Preview in app</button><button id="save" class="primary">Save now</button></div></header>
+  <input id="xlsx-import" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+  <div id="notice" role="alert" hidden></div>
+  <div class="status"><span id="status" role="status">Connecting…</span><span>Changes are saved automatically and shown in the application.</span></div>
+  <nav class="tabs"><button data-tab="content" aria-selected="true">Categories and content</button><button data-tab="shared">Shared texts</button><button data-tab="texts">All texts</button><button data-tab="media">Media</button><button data-tab="languages">Languages</button><button data-tab="diagnostics">Diagnostics</button><button data-tab="backup">Data and recovery</button></nav>
+  <main><aside id="sidebar"><div class="aside-head"><strong>Structure</strong><button id="add-root">+ Category</button></div><div class="tree-actions"><button id="expand-all" class="small">+ Expand all</button><button id="collapse-all" class="small">− Collapse all</button></div><input id="tree-search" placeholder="Search items…" aria-label="Search items"><div id="tree"></div></aside><section id="workspace" aria-label="Content editing"></section></main>
+  <script type="importmap">{"imports":{"dompurify":"/vendor/purify.es.mjs","marked":"/vendor/marked.esm.js"}}</script>
+  <script src="/vendor/suneditor/suneditor.min.js"></script>
+  <script type="module" src="/content-editor.js"></script>
+</body></html>

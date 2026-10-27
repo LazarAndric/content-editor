@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+*.tgz
+test-results.log
+*.log
+.env
+.env.*
+!.env.example
+.npmrc
+dist/
